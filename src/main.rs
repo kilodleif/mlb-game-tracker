@@ -1,3 +1,7 @@
+use mlb_game_tracker::{metadata, tracker::Tracker};
+
 fn main() {
-    println!("Hello, world!");
+    metadata::init();
+
+    Tracker::run()
 }
