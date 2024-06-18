@@ -7,8 +7,15 @@ use serde::Deserialize;
 pub struct CommonEntity {
     pub id: Option<u32>,
     pub name: Option<String>,
+    pub full_name: Option<String>,
     pub link: Option<String>,
     pub abbreviation: Option<String>
+}
+
+#[derive(Deserialize, Debug)]
+pub struct CodeDescPair {
+    pub code: Option<String>,
+    pub description: Option<String>
 }
 
 #[derive(Deserialize, Debug)]

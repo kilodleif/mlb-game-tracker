@@ -26,9 +26,7 @@ impl Retriever {
     pub(super) fn run(&self) {
         let schedule = self.retrieve_schedule_from_server();
         self.sender.send(OutputSignal::PrintScoreBoard(schedule)).unwrap();
-        match self.receiver.lock().unwrap().recv().unwrap() {
 
-        }
     }
 
     fn retrieve_schedule_from_server(&self) -> Schedule {

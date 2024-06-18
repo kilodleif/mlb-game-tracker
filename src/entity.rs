@@ -1,5 +1,5 @@
 use serde::Deserialize;
-use crate::metadata::{self, CommonEntity};
+use crate::metadata::{self, CodeDescPair, CommonEntity};
 
 const CODED_GAME_STATE_IN_PROGRESS: &str = "I";
 const CODED_GAME_STATE_FINAL: &str = "F";
@@ -184,4 +184,55 @@ pub struct TeamRecord {
     pub wins: Option<u8>,
     pub losses: Option<u8>,
     pub pct: Option<String>
+}
+
+#[derive(Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct Play {
+    pub result: Option<PlayResult>,
+    pub about: Option<PlayAbout>,
+    pub count: Option<PlayCount>
+}
+
+#[derive(Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PlayResult {
+    #[serde(rename="type")]
+    pub res_type: Option<String>,
+    pub event: Option<String>,
+    pub event_type: Option<String>,
+    pub description: Option<String>,
+    pub rbi: Option<u8>,
+    pub away_score: Option<u8>,
+    pub home_score: Option<u8>,
+    pub is_out: Option<bool>
+}
+
+#[derive(Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PlayAbout {
+    pub at_bat_index: Option<u32>,
+    pub half_inning: Option<String>,
+    pub inning: Option<u8>,
+    pub is_complete: Option<bool>
+}
+
+#[derive(Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PlayCount {
+    pub balls: Option<u8>,
+    pub strikes: Option<u8>,
+    pub outs: Option<u8>
+}
+
+#[derive(Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct PlayMatchup {
+    pub batter: Option<CommonEntity>,
+    pub bat_side: Option<CodeDescPair>,
+    pub pitcher: Option<CommonEntity>,
+    pub pitch_hand: Option<CodeDescPair>,
+    pub post_on_first: Option<CommonEntity>,
+    pub post_on_second: Option<CommonEntity>,
+    pub post_on_third: Option<CommonEntity>
 }

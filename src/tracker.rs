@@ -2,6 +2,7 @@ use std::sync::{mpsc, Mutex};
 use std::thread;
 
 use crate::entity::Schedule;
+use crate::entity::Play;
 use crate::tracker::recorder::Recorder;
 use crate::tracker::retriever::Retriever;
 
@@ -15,7 +16,6 @@ mod retriever;
 ///
 mod recorder;
 
-struct Play;
 
 enum OutputSignal {
 
